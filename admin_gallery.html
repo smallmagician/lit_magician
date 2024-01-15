@@ -140,5 +140,39 @@
         }
     </script>
 
+    <!-- 以前のコードに追加 -->
+<script>
+    function authenticateAndUpload() {
+        var username = prompt('Enter your username:');
+        var password = prompt('Enter your password:');
+
+        // XMLHttpRequestを使用してサーバーサイドにデータを送信
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'upload.php', true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    var responseData = JSON.parse(xhr.responseText);
+                    addToGallery(responseData);
+                } else {
+                    console.error('Error uploading file.');
+                }
+            }
+        };
+        
+        // フォームデータを作成
+        var formData = new FormData();
+        formData.append('username', username);
+        formData.append('password', password);
+        formData.append('image', document.getElementById('image').files[0]);
+        formData.append('description', document.getElementById('description').value);
+
+        xhr.send(formData);
+    }
+    // ...
+</script>
+
+
 </body>
 </html>
