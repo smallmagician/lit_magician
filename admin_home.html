@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4caf50;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #visitCount {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Admin Home</h1>
+    </header>
+
+    <form>
+        <label for="password">Password:</label>
+        <input type="password" id="password" required>
+        <button type="button" onclick="authenticateAndShowCounter()">Show Visitor Count</button>
+    </form>
+
+    <div id="visitCount"></div>
+
+    <script>
+        function authenticateAndShowCounter() {
+            var password = document.getElementById('password').value;
+
+            // XMLHttpRequestを使用してサーバーサイドに認証リクエストを送信
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'authenticate.php', true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        // 認証成功の場合、訪問者数を取得して表示
+                        getVisitorCount();
+                    } else {
+                        alert('Authentication failed. Please try again.');
+                    }
+                }
+            };
+
+            // フォームデータを作成
+            var formData = 'password=' + encodeURIComponent(password);
+
+            xhr.send(formData);
+        }
+
+        function getVisitorCount() {
+            // XMLHttpRequestを使用してサーバーサイドに訪問者数の取得リクエストを送信
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'counter.php', true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var visitCountElement = document.getElementById('visitCount');
+                    visitCountElement.textContent = 'Visitor Count: ' + xhr.responseText;
+                }
+            };
+
+            xhr.send();
+        }
+    </script>
+
+</body>
+</html>
