@@ -46,6 +46,23 @@
             border: none;
             cursor: pointer;
         }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .gallery-item {
+            margin: 10px;
+            text-align: center;
+        }
+
+        .gallery-item img {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -54,30 +71,45 @@
         <h1>Admin Gallery</h1>
     </header>
 
-    <form>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
+    <form enctype="multipart/form-data" action="#" method="post">
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" required></textarea>
 
-        <button type="button" onclick="login()">Login</button>
+        <button type="button" onclick="upload()">Upload</button>
     </form>
 
-    <script>
-        function login() {
-            var username = document.getElementById('username').value;
-            var password = document.getElementById('password').value;
+    <div class="gallery" id="gallery">
+        <!-- Gallery items will be dynamically added here -->
+    </div>
 
-            if (username === 'littlemagician' && password === 'admin-github') {
-                // ログイン成功時の処理
-                alert('Login successful! Redirecting to admin panel...');
-                // ここで管理画面にリダイレクトなどの処理を実装する
+    <script>
+    function upload() {
+        var imageInput = document.getElementById('image');
+        var descriptionInput = document.getElementById('description');
+
+        var formData = new FormData();
+        formData.append('image', imageInput.files[0]);
+        formData.append('description', descriptionInput.value);
+
+        // XMLHttpRequestを使用してサーバーサイドにデータを送信
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'upload.php', true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                var responseData = JSON.parse(xhr.responseText);
+                addToGallery(responseData);
             } else {
-                alert('Invalid username or password. Please try again.');
+                console.error('Error uploading file.');
             }
-        }
-    </script>
+        };
+        xhr.send(formData);
+    }
+
+    // 以下は addToGallery 関数の定義（前回提供したコードと同じ）
+</script>
 
 </body>
 </html>
