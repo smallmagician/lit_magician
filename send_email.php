@@ -26,10 +26,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($success) {
         echo json_encode(['status' => 'success', 'message' => 'Email sent successfully.']);
     } else {
+        http_response_code(500);
         echo json_encode(['status' => 'error', 'message' => 'Failed to send email.']);
     }
 } else {
     http_response_code(400);
     echo 'Invalid request method.';
 }
+?>
+
 ?>
