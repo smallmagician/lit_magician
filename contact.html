@@ -49,6 +49,22 @@
             border: none;
             cursor: pointer;
         }
+
+        #statusMessage {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
     </style>
 </head>
 <body>
@@ -70,6 +86,8 @@
         <button type="button" onclick="sendEmail()">Submit</button>
     </form>
 
+    <div id="statusMessage"></div>
+
     <script>
         function sendEmail() {
             var name = document.getElementById('name').value;
@@ -82,12 +100,15 @@
             xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
+                    var statusMessage = document.getElementById('statusMessage');
                     if (xhr.status === 200) {
                         var responseData = JSON.parse(xhr.responseText);
-                        alert(responseData.message);
+                        statusMessage.className = 'success';
+                        statusMessage.textContent = responseData.message;
                         clearForm();
                     } else {
-                        console.error('Error sending email.');
+                        statusMessage.className = 'error';
+                        statusMessage.textContent = 'Error sending email.';
                     }
                 }
             };
@@ -102,6 +123,7 @@
 
         function clearForm() {
             document.getElementById('contactForm').reset();
+            document.getElementById('statusMessage').textContent = '';
         }
     </script>
 
