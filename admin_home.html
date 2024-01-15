@@ -81,7 +81,7 @@
             xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
-                    if (xhr.status === 200) {
+                    if (xhr.status === 200 && xhr.responseText === 'Authentication successful.') {
                         // 認証成功の場合、訪問者数を取得して表示
                         getVisitorCount();
                     } else {
