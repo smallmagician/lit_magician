@@ -67,23 +67,40 @@
         <label for="message">Message:</label>
         <textarea id="message" name="message" rows="4" required></textarea>
 
-        <button type="button" onclick="submitForm()">Submit</button>
+        <button type="button" onclick="sendEmail()">Submit</button>
     </form>
 
     <script>
-        function submitForm() {
+        function sendEmail() {
             var name = document.getElementById('name').value;
             var email = document.getElementById('email').value;
             var message = document.getElementById('message').value;
 
-            // TODO: Implement form submission logic (e.g., send data to server, store in database)
+            // XMLHttpRequestを使用してサーバーサイドにデータを送信
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'send_email.php', true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        var responseData = JSON.parse(xhr.responseText);
+                        alert(responseData.message);
+                        clearForm();
+                    } else {
+                        console.error('Error sending email.');
+                    }
+                }
+            };
 
-            // For now, let's just log the data to console
-            console.log('Name: ' + name);
-            console.log('Email: ' + email);
-            console.log('Message: ' + message);
+            // フォームデータを作成
+            var formData = 'name=' + encodeURIComponent(name) +
+                           '&email=' + encodeURIComponent(email) +
+                           '&message=' + encodeURIComponent(message);
 
-            // Optionally, you can reset the form after submission
+            xhr.send(formData);
+        }
+
+        function clearForm() {
             document.getElementById('contactForm').reset();
         }
     </script>
