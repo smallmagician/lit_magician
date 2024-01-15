@@ -78,7 +78,7 @@
         <label for="description">Description:</label>
         <textarea id="description" name="description" rows="4" required></textarea>
 
-        <button type="button" onclick="upload()">Upload</button>
+        <button type="button" onclick="authenticateAndUpload()">Upload</button>
     </form>
 
     <div class="gallery" id="gallery">
@@ -86,30 +86,59 @@
     </div>
 
     <script>
-    function upload() {
-        var imageInput = document.getElementById('image');
-        var descriptionInput = document.getElementById('description');
+        function authenticateAndUpload() {
+            var username = prompt('Enter your username:');
+            var password = prompt('Enter your password:');
 
-        var formData = new FormData();
-        formData.append('image', imageInput.files[0]);
-        formData.append('description', descriptionInput.value);
-
-        // XMLHttpRequestを使用してサーバーサイドにデータを送信
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'upload.php', true);
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                var responseData = JSON.parse(xhr.responseText);
-                addToGallery(responseData);
+            // TODO: Perform actual authentication on the server
+            if (username === 'littlemagician' && password === 'admin-github') {
+                upload();
             } else {
-                console.error('Error uploading file.');
+                alert('Invalid username or password. Please try again.');
             }
-        };
-        xhr.send(formData);
-    }
+        }
 
-    // 以下は addToGallery 関数の定義（前回提供したコードと同じ）
-</script>
+        function upload() {
+            var imageInput = document.getElementById('image');
+            var descriptionInput = document.getElementById('description');
+
+            var formData = new FormData();
+            formData.append('image', imageInput.files[0]);
+            formData.append('description', descriptionInput.value);
+
+            // XMLHttpRequestを使用してサーバーサイドにデータを送信
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'upload.php', true);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var responseData = JSON.parse(xhr.responseText);
+                    addToGallery(responseData);
+                } else {
+                    console.error('Error uploading file.');
+                }
+            };
+            xhr.send(formData);
+        }
+
+        function addToGallery(imageData) {
+            var galleryDiv = document.getElementById('gallery');
+
+            var galleryItem = document.createElement('div');
+            galleryItem.className = 'gallery-item';
+
+            var imageElement = document.createElement('img');
+            imageElement.src = imageData.imageUrl;
+            imageElement.alt = 'Uploaded Image';
+
+            var descriptionElement = document.createElement('p');
+            descriptionElement.textContent = imageData.description;
+
+            galleryItem.appendChild(imageElement);
+            galleryItem.appendChild(descriptionElement);
+
+            galleryDiv.appendChild(galleryItem);
+        }
+    </script>
 
 </body>
 </html>
