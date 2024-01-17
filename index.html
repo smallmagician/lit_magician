@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation with Enter Button</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #000;
+            overflow: hidden; /* 画面外の要素を非表示にする */
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+        }
+
+        #video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out 1s forwards, moveDown 1s ease-in-out 1s forwards, fadeOut 1s ease-in-out 4s forwards;
+        }
+
+        #text {
+            opacity: 0;
+            font-family: 'Arial', sans-serif;
+            font-style: italic; /* 修正: 斜体スタイルを追加 */
+            text-align: center;
+            margin-top: 20px;
+            animation: fadeIn 1s ease-in-out 5s forwards;
+        }
+
+        #enterButton {
+            opacity: 0;
+            background-color: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        #enterButton:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes moveDown {
+            to {
+                top: 50%;
+            }
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="video-container">
+        <!-- Insert your video tag here -->
+        <video controls width="100%">
+            <source src="your-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    
+    <div id="text">Little Magician</div>
+
+    <a href="home.html" id="enterButton">Enter</a>
+
+</body>
+</html>
