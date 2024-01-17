@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animation with Enter Button</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Subrayada:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Subrayada:wght@700&family=Quicksand:wght@500&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -25,13 +25,12 @@
             width: 100%;
             height: 100%;
             opacity: 0;
-            animation: fadeIn 1s ease-in-out 1s forwards, moveDown 1s ease-in-out 1s forwards, fadeOut 1s ease-in-out 4s forwards;
+            animation: fadeIn 1s ease-in-out forwards, fadeOut 1s ease-in-out 4s forwards;
         }
 
         #text {
             opacity: 0;
-            font-family: 'Montserrat Subrayada', sans-serif; /* Montserrat Subrayada フォントを指定 */
-            font-size: 3em; /* 修正: フォントサイズを調整 */
+            font-size: 3em; /* フォントサイズを調整 */
             text-align: center;
             margin-top: 20px;
             animation: fadeIn 1s ease-in-out 5s forwards;
@@ -46,8 +45,10 @@
             display: inline-block;
             font-size: 16px;
             margin-top: 20px;
-            opacity: 0; /* 修正: 最初は非表示にする */
+            opacity: 0; /* 最初は非表示にする */
             transition: background-color 0.3s, color 0.3s;
+            font-family: 'Quicksand', sans-serif; /* Quicksand フォントを指定 */
+            position: relative; /* 追加: 相対位置指定 */
         }
 
         #enterButton:hover {
@@ -61,19 +62,13 @@
             }
         }
 
-        @keyframes moveDown {
-            to {
-                top: 50%;
-            }
-        }
-
         @keyframes fadeOut {
             to {
                 opacity: 0;
             }
         }
 
-        /* 修正: ボタンの表示アニメーションを追加 */
+        /* ボタンの表示アニメーションを追加 */
         @keyframes buttonFadeIn {
             to {
                 opacity: 1;
@@ -85,7 +80,7 @@
 
     <div id="video-container">
         <!-- Insert your video tag here -->
-        <video controls width="100%">
+        <video controls width="50%" autoplay loop>
             <source src="your-video.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
@@ -96,7 +91,7 @@
     <a href="home.html" id="enterButton">Enter</a>
 
     <script>
-        // 修正: ページが読み込まれた後にボタンの表示アニメーションを開始
+        // ページが読み込まれた後にボタンの表示アニメーションを開始
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('enterButton').style.animation = "buttonFadeIn 1s ease-in-out 6s forwards";
         });
