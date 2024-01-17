@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Little Magician</title>
+    <title>Animation with Enter Button</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat+Subrayada:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -13,9 +13,19 @@
             justify-content: center;
             height: 100vh;
             background-color: #000;
-            overflow: hidden; /* 画面外の要素を非表示にする */
+            overflow: hidden;
             color: #fff;
-            font-family: 'Montserrat Subrayada', sans-serif; /* Montserrat Subrayada フォントを指定 */
+            font-family: 'Montserrat Subrayada', sans-serif;
+        }
+
+        #shield {
+            position: absolute;
+            width: 50vw;
+            height: 50vh;
+            background-color: rgba(0, 0, 0, 0.7); /* 半透明な背景 */
+            z-index: 2; /* 動画より前面に表示 */
+            opacity: 0; /* 最初は非表示 */
+            animation: fadeIn 1s ease-in-out 5s forwards;
         }
 
         #video-container {
@@ -23,8 +33,7 @@
             width: 50vw;
             height: 50vh;
             overflow: hidden;
-            opacity: 0;
-            animation: fadeIn 1s ease-in-out forwards, fadeOut 1s ease-in-out 4s forwards;
+            z-index: 1; /* シールドより背面に表示 */
         }
 
         #video-container video {
@@ -35,7 +44,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            pointer-events: none; /* マウスイベントを無効にする */
+            pointer-events: none;
         }
 
         #text {
@@ -43,7 +52,7 @@
             font-size: 3em;
             text-align: center;
             margin-top: 20px;
-            animation: fadeIn 1s ease-in-out 5s forwards;
+            animation: fadeIn 1s ease-in-out 6s forwards;
         }
 
         #enterButton {
@@ -70,12 +79,6 @@
             }
         }
 
-        @keyframes fadeOut {
-            to {
-                opacity: 0;
-            }
-        }
-
         @keyframes buttonFadeIn {
             to {
                 opacity: 1;
@@ -85,6 +88,8 @@
 </head>
 <body>
 
+    <div id="shield"></div>
+    
     <div id="video-container">
         <!-- Insert your video tag here -->
         <video autoplay loop muted>
@@ -99,7 +104,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById('enterButton').style.animation = "buttonFadeIn 1s ease-in-out 6s forwards";
+            document.getElementById('enterButton').style.animation = "buttonFadeIn 1s ease-in-out 7s forwards";
         });
     </script>
 
