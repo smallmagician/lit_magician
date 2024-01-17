@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animation with Enter Button</title>
+    <title>Little Magician</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat+Subrayada:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -16,6 +16,10 @@
             overflow: hidden;
             color: #fff;
             font-family: 'Montserrat Subrayada', sans-serif;
+        }
+
+        #container {
+            text-align: center;
         }
 
         #video-container {
@@ -33,7 +37,6 @@
         #text {
             opacity: 0;
             font-size: 3em;
-            text-align: center;
             margin-top: 20px;
             animation: fadeIn 1s ease-in-out 6s forwards;
         }
@@ -49,6 +52,7 @@
             margin-top: 20px;
             opacity: 0;
             transition: background-color 0.3s, color 0.3s;
+            animation: buttonFadeIn 1s ease-in-out 7s forwards;
         }
 
         #enterButton:hover {
@@ -71,23 +75,19 @@
 </head>
 <body>
 
-    <div id="video-container">
-        <!-- Insert your video tag here -->
-        <video autoplay loop muted>
-            <source src="home.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+    <div id="container">
+        <div id="video-container">
+            <!-- Insert your video tag here -->
+            <video autoplay loop muted>
+                <source src="home.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        
+        <div id="text">Little Magician</div>
+
+        <a href="home.html" id="enterButton">Enter</a>
     </div>
-    
-    <div id="text">Little Magician</div>
-
-    <a href="home.html" id="enterButton">Enter</a>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById('enterButton').style.animation = "buttonFadeIn 1s ease-in-out 7s forwards";
-        });
-    </script>
 
 </body>
 </html>
