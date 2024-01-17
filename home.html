@@ -41,6 +41,12 @@
             text-align: center;
             padding: 10px;
         }
+
+        button {
+            font-size: 16px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -59,12 +65,18 @@
     <section>
         <h2>このサイトを見ていただきありがとうございます。</h2>
         <p>私の趣味・マジックについてご覧ください！</p>
-        <a href="home_en.html">English</a>
+        <button onclick="redirectToEnglish()">English</button>
     </section>
 
     <footer>
         <p>&copy; 2024 lit_magician. All rights reserved.</p>
     </footer>
+
+    <script>
+        function redirectToEnglish() {
+            window.location.href = "home_en.html";
+        }
+    </script>
 
 </body>
 </html>
