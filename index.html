@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animation with Enter Button</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Subrayada:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -14,7 +15,7 @@
             background-color: #000;
             overflow: hidden; /* 画面外の要素を非表示にする */
             color: #fff;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Montserrat Subrayada', sans-serif; /* Montserrat Subrayada フォントを指定 */
         }
 
         #video-container {
@@ -29,15 +30,14 @@
 
         #text {
             opacity: 0;
-            font-family: 'Arial', sans-serif;
-            font-style: italic; /* 修正: 斜体スタイルを追加 */
+            font-family: 'Montserrat Subrayada', sans-serif; /* Montserrat Subrayada フォントを指定 */
+            font-size: 3em; /* 修正: フォントサイズを調整 */
             text-align: center;
             margin-top: 20px;
             animation: fadeIn 1s ease-in-out 5s forwards;
         }
 
         #enterButton {
-            opacity: 0;
             background-color: transparent;
             border: 2px solid #fff;
             color: #fff;
@@ -46,6 +46,7 @@
             display: inline-block;
             font-size: 16px;
             margin-top: 20px;
+            opacity: 0; /* 修正: 最初は非表示にする */
             transition: background-color 0.3s, color 0.3s;
         }
 
@@ -71,6 +72,13 @@
                 opacity: 0;
             }
         }
+
+        /* 修正: ボタンの表示アニメーションを追加 */
+        @keyframes buttonFadeIn {
+            to {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body>
@@ -86,6 +94,13 @@
     <div id="text">Little Magician</div>
 
     <a href="home.html" id="enterButton">Enter</a>
+
+    <script>
+        // 修正: ページが読み込まれた後にボタンの表示アニメーションを開始
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById('enterButton').style.animation = "buttonFadeIn 1s ease-in-out 6s forwards";
+        });
+    </script>
 
 </body>
 </html>
