@@ -23,10 +23,14 @@
             height: 100%;
             opacity: 0;
             animation: fadeIn 1s ease-in-out forwards, fadeOut 1s ease-in-out 4s forwards;
+            display: flex; /* 親要素をフレックスコンテナにする */
+            align-items: center; /* 子要素を垂直方向中央に揃える */
+            justify-content: center; /* 子要素を水平方向中央に揃える */
         }
 
         #video-container video {
-            width: 100%; /* video 要素が親要素に合わせて幅を取るように指定 */
+            max-width: 100%; /* video 要素が親要素に合わせて幅を取るように指定 */
+            max-height: 100%; /* video 要素が親要素に合わせて高さを取るように指定 */
         }
 
         #text {
@@ -35,6 +39,8 @@
             text-align: center;
             margin-top: 20px;
             animation: fadeIn 1s ease-in-out 5s forwards;
+            position: absolute; /* 追加: 絶対位置指定 */
+            z-index: 1; /* 追加: テキストを動画の上に表示 */
         }
 
         #enterButton {
@@ -85,10 +91,9 @@
             <source src="your-video.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
+        <div id="text">Little Magician</div>
     </div>
     
-    <div id="text">Little Magician</div>
-
     <a href="home.html" id="enterButton">Enter</a>
 
     <script>
