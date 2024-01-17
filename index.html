@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Little Magician</title>
+    <title>Animation with Enter Button</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat+Subrayada:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -19,6 +19,7 @@
         }
 
         #container {
+            position: relative;
             text-align: center;
         }
 
@@ -26,6 +27,7 @@
             width: 50vw;
             height: 50vh;
             overflow: hidden;
+            position: relative;
         }
 
         #image-container img {
@@ -61,7 +63,9 @@
             margin-top: 20px;
             opacity: 0;
             transition: background-color 0.3s, color 0.3s;
-            animation: buttonFadeIn 1s ease-in-out 9s forwards;
+            animation: buttonFadeIn 1s ease-in-out 8s forwards; /* ボタンのアニメーション修正 */
+            position: relative;
+            z-index: 1;
         }
 
         #enterButton:hover {
