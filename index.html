@@ -19,13 +19,28 @@
         }
 
         #video-container {
+            position: relative;
+            width: 50vw;
+            height: 50vh;
+            overflow: hidden;
             opacity: 0;
             animation: fadeIn 1s ease-in-out forwards, fadeOut 1s ease-in-out 4s forwards;
         }
 
+        #video-container video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none; /* マウスイベントを無効にする */
+        }
+
         #text {
             opacity: 0;
-            font-size: 3em; /* フォントサイズを調整 */
+            font-size: 3em;
             text-align: center;
             margin-top: 20px;
             animation: fadeIn 1s ease-in-out 5s forwards;
@@ -40,7 +55,7 @@
             display: inline-block;
             font-size: 16px;
             margin-top: 20px;
-            opacity: 0; /* 最初は非表示にする */
+            opacity: 0;
             transition: background-color 0.3s, color 0.3s;
         }
 
@@ -61,7 +76,6 @@
             }
         }
 
-        /* ボタンの表示アニメーションを追加 */
         @keyframes buttonFadeIn {
             to {
                 opacity: 1;
@@ -73,8 +87,8 @@
 
     <div id="video-container">
         <!-- Insert your video tag here -->
-        <video controls width="50%" autoplay loop>
-            <source src="your-video.mp4" type="video/mp4">
+        <video autoplay loop muted>
+            <source src="home.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
@@ -84,7 +98,6 @@
     <a href="home.html" id="enterButton">Enter</a>
 
     <script>
-        // ページが読み込まれた後にボタンの表示アニメーションを開始
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('enterButton').style.animation = "buttonFadeIn 1s ease-in-out 6s forwards";
         });
