@@ -3,127 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
+    <title>ちっちゃいマジシャン</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
+            background-color: #ffffff;
             color: #333333;
             margin: 0;
             padding: 0;
         }
 
         header {
-            background-color: #4caf50;
+            background-color: #f8f8f8;
             padding: 20px;
             text-align: center;
-            color: white;
         }
 
-        form {
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #ffffff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-
-        input, textarea {
-            width: 100%;
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #e0e0e0;
             padding: 10px;
-            margin-bottom: 20px;
-            box-sizing: border-box;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333333;
+            padding: 10px 20px;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #f8f8f8;
+            text-align: center;
+            padding: 10px;
         }
 
         button {
-            background-color: #4caf50;
-            color: #ffffff;
+            font-size: 16px;
             padding: 10px 20px;
-            border: none;
             cursor: pointer;
-        }
-
-        #statusMessage {
-            margin-top: 20px;
-            padding: 10px;
-            border-radius: 5px;
-        }
-
-        .success {
-            background-color: #d4edda;
-            color: #155724;
-        }
-
-        .error {
-            background-color: #f8d7da;
-            color: #721c24;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Contact Us</h1>
+        <h1>ちっちゃいマジシャン</h1>
     </header>
 
-    <form id="contactForm">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+    <nav>
+        <a href="home">Home</a>
+        <a href="about">About</a>
+        <a href="gallery">Gallery</a>
+        <a href="https://note.com/lit_magician/">Note</a>
+        <a href="contact">Contact</a>
+    </nav>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="4" required></textarea>
-
-        <button type="button" onclick="sendEmail()">Submit</button>
-    </form>
-
-    <div id="statusMessage"></div>
+    <p>メールアドレス：<a href="mailto:lit_magician@outlook.jp">lit_magician@outlook.jp</a></p>
+    <p>X：<a href="https://twitter.com/lit_magician">ちっちゃいマジシャン-X</a></p>
+    
+    <footer>
+        <p>&copy; 2024 lit_magician. All rights reserved.</p>
+    </footer>
 
     <script>
-        function sendEmail() {
-            var name = document.getElementById('name').value;
-            var email = document.getElementById('email').value;
-            var message = document.getElementById('message').value;
-
-            // XMLHttpRequestを使用してサーバーサイドにデータを送信
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'send_email.php', true);
-            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4) {
-                    var statusMessage = document.getElementById('statusMessage');
-                    if (xhr.status === 200) {
-                        var responseData = JSON.parse(xhr.responseText);
-                        statusMessage.className = 'success';
-                        statusMessage.textContent = responseData.message;
-                        clearForm();
-                    } else {
-                        statusMessage.className = 'error';
-                        statusMessage.textContent = 'Error sending email.';
-                    }
-                }
-            };
-
-            // フォームデータを作成
-            var formData = 'name=' + encodeURIComponent(name) +
-                           '&email=' + encodeURIComponent(email) +
-                           '&message=' + encodeURIComponent(message);
-
-            xhr.send(formData);
-        }
-
-        function clearForm() {
-            document.getElementById('contactForm').reset();
-            document.getElementById('statusMessage').textContent = '';
+        function redirectToEnglish() {
+            window.location.href = "home_en.html";
         }
     </script>
 
